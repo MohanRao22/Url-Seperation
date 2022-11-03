@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parameter Retaination Demo</title>
+</head>
+
+<body>
+     <h3>ID NO : <span id="idno"></span></h3>
+    <h5>Spend Amount : <span id="initial_amt"></span></h5>
+    <h5>Total Amount : <span id="totalamt"></span></h5>
+    <h5>Balance Amount : <span id="balanceamt"></span></h5>
+    <h5>No of Months to Repay : <span id="repay"></span></h5>
+    <h5>Dummy Value : <span id="dummy"></span></h5>
+    <script>
+        var param1 = window.location.search;
+        console.log(param1);
+        const urlParams = new URLSearchParams(param1);
+        console.log(urlParams);
+        let parameter = urlParams.get("cust_no");
+        console.log(parameter);
+        parameter = parameter.toUpperCase();
+        var secretKeys = {
+            A: 0,
+            B: 1,
+            C: 2,
+            D: 3,
+            E: 4,
+            F: 5,
+            G: 6,
+            H: 7,
+            I: 8,
+            J: 9
+        }
+
+        let result = parameter.replace(/A|B|C|D|E|F|G|H|I|J/gi, function (index) {
+            console.log(index);
+            return secretKeys[index];
+        });
+
+        console.log(result);
+        // 110000022223333
+
+        const initial_amt = result.slice(0,4);
+        const id = result.slice(4,8);
+        const target_amt = result.slice(8,12);
+        const balance = target_amt - initial_amt ;
+        const repay = result.slice(12,14);
+        const dummy = result.slice(14,-1);
+        console.log(initial_amt);
+
+        if(balance > 2000){
+
+        }
+        
+        var a = document.getElementById("initial_amt").innerText = initial_amt;
+        var b = document.getElementById("idno").innerText = id;
+        var c = document.getElementById("totalamt").innerText = target_amt;
+        var d = document.getElementById("balanceamt").innerText = balance;
+        var e = document.getElementById("repay").innerText = repay;
+        var f = document.getElementById("dummy").innerText = repay;
+
+
+    </script>
+</body>
+
+</html>
